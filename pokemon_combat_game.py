@@ -3,13 +3,19 @@ chosen_pokemon = input('¿Against which pokemon do you wanna fight?: (Squirtle /
 
 pikachu_life = 100
 enemy_life = 0
+pkm_attack_dmg = 0
 
 if chosen_pokemon == "SQUIRTLE":
     enemy_life = 90
+    pkm_name = 'Squirtle'
+    pkm_attack_dmg = 8
 elif chosen_pokemon == "CHARMANDER":
     enemy_life = 80
+    pkm_name = 'Charmander'
+    pkm_attack_dmg = 10
 elif chosen_pokemon == "BULBASAUR":
     enemy_life= 100
+    pkm_name = 'Bulbasaur'
 
 while pikachu_life > 0 and enemy_life > 0:
     print('Choose a Move:')
@@ -20,35 +26,32 @@ while pikachu_life > 0 and enemy_life > 0:
     if move_input == 1:
         enemy_life -= 12
         print('Pikachu uses Thunder Shock and inflicts 12 points of damage')
-        print('{}\'s Life = {}'.format(chosen_pokemon,(enemy_life)).lower().capitalize())
+        print('{}\'s Life = {}'.format(pkm_name,(enemy_life)).lower().capitalize())
         print('Pikachu\'s Life = {}'.format(pikachu_life))
 
     elif move_input == 2:
         enemy_life -= 10
         print('Pikachu uses Tail Whip and inflicts 10 points of damage')
-        print('{}\'s Life = {}'.format(chosen_pokemon, (enemy_life)).lower().capitalize())
+        print('{}\'s Life = {}'.format(pkm_name, (enemy_life)).lower().capitalize())
         print('Pikachu\'s Life = {}'.format(pikachu_life))
 
-    if chosen_pokemon == 'SQUIRTLE':
-        print('Squirtle hits you and inflicts 8 damage points')
-        pikachu_life -= 8
-        print('{}\'s Life = {}'.format(chosen_pokemon, (enemy_life)).lower().capitalize())
+    if pkm_name == 'Bulbasaur':
+        bulbasaur_attack = random.randint(8,15)
+        pikachu_life -= bulbasaur_attack
+        print('{} attacks you and inflicts {} damage points'.format(pkm_name, bulbasaur_attack))
+        print('{}\'s Life = {}'.format(pkm_name, (enemy_life)).lower().capitalize())
+        print('Pikachu\'s Life = {}'.format(pikachu_life))
+    else:
+        print('{} attacks you and inflicts {} damage points'.format(pkm_name, pkm_attack_dmg))
+        pikachu_life -= pkm_attack_dmg
+        print('{}\'s Life = {}'.format(pkm_name, (enemy_life)).lower().capitalize())
         print('Pikachu\'s Life = {}'.format(pikachu_life))
 
-    if chosen_pokemon == 'CHARMANDER':
-        print('Charmander attacks you and inflicts 10 damage points')
-        pikachu_life -= 10
-        print('{}\'s Life = {}'.format(chosen_pokemon, (enemy_life)).lower().capitalize())
-        print('Pikachu\'s Life = {}'.format(pikachu_life))
-    if chosen_pokemon == 'BULBASAUR':
-        random_damage_number = random.randint(8,12)
-        print('Bulbasaur strikes you and inflicts {} points of damage'.format(random_damage_number))
-        pikachu_life -= random_damage_number
-        print('{}\'s Life = {}'.format(chosen_pokemon, (enemy_life)).lower().capitalize())
-        print('Pikachu\'s Life = {}'.format(pikachu_life))
 
 print('Combat Finished.')
 if pikachu_life <= 0:
-    print('Pikachu is the Winner')
+    print('{} is the Winner'.format(pkm_name).lower().capitalize())
 elif enemy_life <= 0:
-    print('{} is the Winner'.format(chosen_pokemon).lower().capitalize())
+    print('Pikachu is the Winner')
+
+print('Combat has finished')
