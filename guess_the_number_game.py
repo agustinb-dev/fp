@@ -4,7 +4,7 @@ try_counter = 0
 
 
 while (try_counter < 5):
-    user_number = int(input('Adivina el numero: '))
+    user_number = int(input('Guess the number!: '))
     if user_number == number_to_guess:
         print('You Win!')
         exit()
